@@ -2,6 +2,19 @@
 
 const activePage = document.querySelector("#header-menu li.active [data-page]")?.dataset.page;
 
+for (const element of document.querySelectorAll(".elevator")) {
+  const label = element.textContent.trim();
+  if (label && !element.hasAttribute("aria-label")) {
+    element.setAttribute("aria-label", label);
+  }
+
+  for (const node of element.childNodes) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      node.remove();
+    }
+  }
+}
+
 for (const element of document.querySelectorAll(
   ".page-footer, .category-item:not(.category-has-unread)",
 )) {
